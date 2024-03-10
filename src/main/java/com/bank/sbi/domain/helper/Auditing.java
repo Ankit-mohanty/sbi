@@ -28,4 +28,5 @@ public class Auditing {
     private LocalDateTime updatedTime;
     @LastModifiedBy
     private String updatedBy;
+
 }

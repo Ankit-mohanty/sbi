@@ -21,32 +21,52 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
+    public void deposit(long accountNo, double balance) {
+        accountRepository.addBalance(accountNo, balance);
+    }
+
+    @Override
+    public void withdraw(long accountNo, double balance) {
+        accountRepository.deductBalance(accountNo, balance);
+    }
+
+    @Override
     public Account updateAccount(long accountNumber, Account account) {
         return null;
     }
 
     @Override
     public Account deleteAccount(long accountNumber) {
-        return null;
+        Account account=getAccount(accountNumber);
+        accountRepository.delete(account);
+        return account;
     }
 
     @Override
     public Account getAccount(long accountNumber) {
-        return null;
+        return accountRepository.findByAccountNo(accountNumber).orElseThrow();
     }
 
     @Override
     public Account getAccountBySlNo(int slNo) {
-        return null;
+        return accountRepository.findById(slNo).orElseThrow();
     }
 
     @Override
     public Account getAccountByEmail(String email) {
-        return null;
+//        return accountRepository.findByCredentialAccountEmail(email).orElseThrow();
+        return accountRepository.findByEmail(email).orElseThrow();
     }
 
     @Override
     public List<Account> getAccounts() {
-        return null;
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public Account getAccountbyEmailAndPassword(String email, String password) {
+        return accountRepository
+                .findByCredentialAccountEmailAndCredentialAccountPassword(email, password)
+                .orElseThrow();
     }
 }

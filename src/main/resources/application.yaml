@@ -1,7 +1,7 @@
 server:
   port: 1200
-#  servlet:
-#    context-path: "/banking"#context patha always start with "/".
+  servlet:
+    context-path: "/sbi"#context patha always start with "/".
 #    we declare this because we know the application by local host during microservices.
 
 spring:

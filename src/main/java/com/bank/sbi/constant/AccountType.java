@@ -1,4 +1,4 @@
-package com.bank.sbi.domain;
+package com.bank.sbi.constant;
 
 public enum AccountType {
     CURRENT,SAVINGS
