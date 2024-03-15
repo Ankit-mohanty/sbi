@@ -8,22 +8,25 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.naming.InsufficientResourcesException;
 import java.util.NoSuchElementException;
+
 @RestControllerAdvice
-public class SbiExceptionHandler  {
+public class SbiExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ProblemDetail handleNoSuchElementException(NoSuchElementException e) {
         return ProblemDetail
-                .forStatusAndDetail(HttpStatusCode.valueOf(500),e.getMessage());
+                .forStatusAndDetail(HttpStatusCode.valueOf(500), e.getMessage());
     }
-@ExceptionHandler(InsufficientResourcesException.class)
+
+    @ExceptionHandler(InsufficientResourcesException.class)
     public ProblemDetail handleInsufficientResourcesException(InsufficientResourcesException e) {
         return ProblemDetail
-              .forStatusAndDetail(HttpStatusCode.valueOf(500),e.getMessage());
+                .forStatusAndDetail(HttpStatusCode.valueOf(500), e.getMessage());
     }
+
     @ExceptionHandler(RollbackException.class)
     public ProblemDetail handleRollbackException(RollbackException e) {
         return ProblemDetail
-              .forStatusAndDetail(HttpStatusCode.valueOf(400),e.getMessage());
+                .forStatusAndDetail(HttpStatusCode.valueOf(400), e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
@@ -33,9 +36,10 @@ public class SbiExceptionHandler  {
         problemDetails.setDetail(e.getMessage());
         return problemDetails;
     }
+
     @ExceptionHandler(Exception.class)
     public ProblemDetail handel(Exception e) {
         return ProblemDetail
-                .forStatusAndDetail(HttpStatusCode.valueOf(400),e.getMessage());
+                .forStatusAndDetail(HttpStatusCode.valueOf(400), e.getMessage());
     }
 }

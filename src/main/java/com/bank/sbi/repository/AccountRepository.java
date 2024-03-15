@@ -27,4 +27,5 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 @Modifying
 @Transactional
 int deductBalance(long accountNo,double balance);
+boolean existsByAccountNo(long accountNo);
 }
